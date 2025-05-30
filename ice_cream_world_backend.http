@@ -1,0 +1,6 @@
+@ice_cream_world_backend_HostAddress = http://localhost:5299
+
+GET {{ice_cream_world_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
