@@ -1,4 +1,3 @@
-using System.Data;
 using ice_cream_world_backend.models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -34,13 +33,20 @@ namespace ice_cream_world_backend.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Flavor>> CreateFlavor(Flavor flavor)
+        public async Task<ActionResult<Flavor>> CreateFlavor(CreateFlavorDTO flavor)
         {
-            context.Add(flavor);
+            var newFlavor = new Flavor
+            {
+                Name = flavor.Name,
+                Description = flavor.Description,
+                Photo = flavor.Photo
+            };
+
+            context.Add(newFlavor);
 
             await context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetFlavor), new { id = flavor.Id }, flavor);
+            return CreatedAtAction(nameof(GetFlavor), new { id = newFlavor.Id }, newFlavor);
         }
 
         [HttpPut("{id}")]
@@ -84,6 +90,17 @@ namespace ice_cream_world_backend.Controllers
         private async Task<bool> FlavorExists(int id)
         {
             return await context.Flavors.AnyAsync(x => x.Id == id);
+        }
+
+        private static FlavorDTO FlavorToDTO(Flavor flavor)
+        {
+            return new FlavorDTO
+            {
+                Id = flavor.Id,
+                Name = flavor.Name,
+                Description = flavor.Description,
+                Photo = flavor.Photo
+            };
         }
     }
 }

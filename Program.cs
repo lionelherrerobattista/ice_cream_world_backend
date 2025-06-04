@@ -8,6 +8,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string>();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins(allowedOrigins!)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddDbContext<IceCreamWorldContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("IceCreamWorldContext")));
 
@@ -20,6 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // middleware components:
+app.UseCors();
 
 app.UseHttpsRedirection();
 
