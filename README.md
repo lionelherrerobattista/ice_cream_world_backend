@@ -1,4 +1,4 @@
-# Ice Cream World Backend
+# Ice Cream World Back-end
 
 # Summary
 
@@ -11,6 +11,28 @@ To run the app execute the following command:
 ```bash
 dotnet run
 ```
+
+## Run backend with PostgreSQL DB
+
+```docker
+docker compose up --build -d
+```
+
+# Technical Docs
+
+-   Framework:
+
+    -   .NET 9 webapi
+
+-   Database:
+
+    -   Postgredb
+
+-   Containerization:
+
+    -   Docker
+
+-   [Front-end repository](https://github.com/lionelherrerobattista/ice_cream_world_frontend)
 
 # Endpoints
 
@@ -36,25 +58,7 @@ dotnet run
 -   `/api/icecream/:id`
     -   deletes the icream flavor with the specified `id`.
 
-# Technical Docs
-
--   Framework:
-
-    -   The app was created using .NET 9 webapi template.
-
--   Database:
-    - Postgredb
-
--   Containerization:
-    - Docker
-
-# Run database
-
-```docker
-docker-compose up -d
-```
-
-
 ## Models
 
 -   IceCream
+-   Serving container
