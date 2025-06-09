@@ -19,9 +19,11 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
-
+// database
 builder.Services.AddDbContext<IceCreamWorldContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("IceCreamWorldContext")));
+    // options.UseSqlite(builder.Configuration.GetConnectionString("IceCreamWorldContext"))
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
 
 var app = builder.Build();
 

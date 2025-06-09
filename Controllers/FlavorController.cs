@@ -16,7 +16,7 @@ namespace ice_cream_world_backend.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Flavor>> GetFlavor(int id)
+        public async Task<ActionResult<Flavor>> GetFlavor(Guid id)
         {
             var flavor = await context.Flavors.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -50,7 +50,7 @@ namespace ice_cream_world_backend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateFlavor(int id, Flavor flavor)
+        public async Task<ActionResult> UpdateFlavor(Guid id, Flavor flavor)
         {
             if (id != flavor.Id)
                 return BadRequest();
@@ -87,7 +87,7 @@ namespace ice_cream_world_backend.Controllers
             return NoContent();
         }
 
-        private async Task<bool> FlavorExists(int id)
+        private async Task<bool> FlavorExists(Guid id)
         {
             return await context.Flavors.AnyAsync(x => x.Id == id);
         }

@@ -2,7 +2,7 @@
 
 # Summary
 
-This is thee API for the Ice Cream World business. It provides the necessary endpoints to perform CRUD operations on ice creams records.
+This is the API for the Ice Cream World business. It provides the necessary endpoints to perform CRUD operations on ice creams records.
 
 # Getting started
 
@@ -43,8 +43,17 @@ dotnet run
     -   The app was created using .NET 9 webapi template.
 
 -   Database:
+    - Postgredb
 
 -   Containerization:
+    - Docker
+
+# Run database
+
+```docker
+docker-compose up -d
+```
+
 
 ## Models
 
