@@ -1,4 +1,5 @@
 using ice_cream_world_backend.models;
+using IceCreamWorld.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,7 @@ builder.Services.AddDbContext<IceCreamWorldContext>(options =>
     // options.UseSqlite(builder.Configuration.GetConnectionString("IceCreamWorldContext"))
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+builder.Services.AddScoped<IFlavorRepository, FlavorRepository>();
 
 var app = builder.Build();
 
