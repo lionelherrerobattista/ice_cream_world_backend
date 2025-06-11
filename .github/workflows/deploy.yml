@@ -1,0 +1,34 @@
+name: Deploy to Render
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: 9.0
+
+            - name: Restore dependencies
+              run: dotnet restore IceCreamWorld.sln
+
+            - name: Build solution
+              run: dotnet build IceCreamWorld.sln --no-restore --configuration Release
+
+            - name: Run tests
+              run: dotnet test tests/IceCreamWorld.UnitTests/IceCreamWorld.UnitTests.csproj --no-build --configuration Release
+
+            - name: Trigger Render deploy
+              if: success()
+              env:
+                  RENDER_TOKEN: ${{ secrets.RENDER_TOKEN }}
+              run: |
+                  curl -X POST https://api.render.com/deploy/srv-d14thuk9c44c73dnb9u0?key=$RENDER_TOKEN
