@@ -22,4 +22,4 @@ ENV ASPNETCORE_URLS=http://+:80
 EXPOSE 80
 
 # Start the app
-ENTRYPOINT [ "dotnet", "ice_cream_world_backend.dll" ]
+ENTRYPOINT [ "dotnet", "IceCreamWorld.dll" ]
