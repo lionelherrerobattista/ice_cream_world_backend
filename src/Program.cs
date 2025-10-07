@@ -10,7 +10,8 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string>();
+var allowedOrigins = Environment.GetEnvironmentVariable("PRODUCTION_URL")
+    ?? builder.Configuration.GetSection("AllowedOrigins").Get<string>();
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
