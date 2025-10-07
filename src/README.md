@@ -6,17 +6,20 @@ This is the API for the Ice Cream World business. It provides the necessary endp
 
 # Getting started
 
-To run the app execute the following command:
+1. To run the app execute the following command:
 
-```bash
-dotnet run
-```
+    ```bash
+    dotnet run
+    ```
 
-## Run backend with PostgreSQL DB
-
-```docker
-docker compose up --build -d
-```
+2. Run backend with PostgreSQL DB
+    ```bash
+    docker compose up --build -d
+    ```
+3. Apply migrations
+    ```bash
+    dotnet ef database update
+    ```
 
 # Technical Docs
 
@@ -61,4 +64,3 @@ docker compose up --build -d
 ## Models
 
 -   IceCream
--   Serving container
