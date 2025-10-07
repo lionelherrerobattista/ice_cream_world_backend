@@ -21,9 +21,11 @@ builder.Services.AddCors(options =>
     });
 });
 // database
+var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
+    ?? builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<IceCreamWorldContext>(options =>
     // options.UseSqlite(builder.Configuration.GetConnectionString("IceCreamWorldContext"))
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseNpgsql(connectionString)
 );
 builder.Services.AddScoped<IFlavorRepository, FlavorRepository>();
 
