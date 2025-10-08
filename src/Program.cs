@@ -1,5 +1,6 @@
 using ice_cream_world_backend.models;
 using IceCreamWorld.Data;
+using IceCreamWorld.Middleware;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,6 +43,8 @@ builder.Services.AddRateLimiter(options =>
 builder.Services.AddScoped<IFlavorRepository, FlavorRepository>();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
