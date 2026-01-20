@@ -7,7 +7,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - ConnectionStrings__DefaultConnection=${POSTGRES_DB_UR}
+      - ConnectionStrings__DefaultConnection=${POSTGRES_DB_URL}
     ports:
       - 7001:80
     networks:
